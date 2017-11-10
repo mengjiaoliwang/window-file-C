@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>#8</Title>
+			<Shortcut>#8</Shortcut>
+			<Description>c语言main函数</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>expression</ID>
+					<ToolTip>要计算的表达式</ToolTip>
+					<Default>true</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="cpp"><![CDATA[
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<math.h>
+
+int sum(int *a, int *b)
+{
+	int sum1 = 0;
+	for (int i = *a; i <=*b; i++)
+	{
+		if (i %7 != 0 && i % 5 != 0)
+		{
+			sum1 += i;
+		}
+	}
+	return sum1;
+}
+
+int sum2(int *a, int*b)
+{
+	int ssum2 = 0;
+	if (*a > *b)
+	{
+		int temp = *a;
+		*a = *b;
+		*b= temp;
+	}
+	for (int i = *a; i <= *b; i++)
+	{
+		ssum2 += i;
+	}
+	return ssum2;
+}
+
+int  gongyue(int *c, int *d)
+{
+
+	int a = *c,b = *d;
+	if (a < b)
+	{
+		int temp = a;
+		a = b;
+		b = temp;
+	}
+	
+		for (int i = 0; a%b != 0; i++)
+		{
+			int c = a%b;
+			a = b;
+			b = c;
+		}		
+		return b;
+}
+int main01()
+{
+	int a;
+	int b;
+	int c;
+	int ssum=0;
+	int ssum1 = 0;
+	char arr[] = "hello world";
+	scanf("%d,%d", &a,&b);
+	/*for (int i = a; i <= b; i++)
+	{
+		if (i / 7 != 0 && i / 5 != 0)
+		{
+			ssum += i;
+		}
+	}*/
+	c=gongyue(&a,&b);
+	ssum=sum(&a, &b);
+	ssum1 = sum2(&a, &b);
+	printf("%d和%d之间不能被7和5整除的数的和为：%d\n",a,b,ssum );
+	printf("%d到%d之间的数的和为：%d\n", a, b, ssum1);
+	printf("长度为%d，字符串为：%s\n", strlen(arr),arr);
+	printf("%d和%d的最大公约数为：%d\n", a, b, c);
+	printf("%d和%d的最小公倍数为：%d\n", a, b, a*b / c);
+	return EXIT_SUCCESS;
+}
+int main()
+{
+	
+		/*int m = 1;
+		int n = 100;
+		int sum = 0;
+		if (m > n)
+		{
+			int temp = m;
+			m = n;
+			n = temp;
+		}
+		for (int i = 0; i <n; i++)
+		{
+			sum = sum + m + i;
+		}
+		printf("%d", sum );*/
+	
+	for (int i = 1;; i++)
+	{
+		int j = 7*i;
+		int k = 6;
+		for (;; k--)
+		{
+			if (j % k != (k - 1))
+			{
+				break;
+			}
+			if (k < 2)
+			{
+				printf("该数为：%d\n", j);
+				return 0;
+			}
+		}
+	
+	}
+	return 0;
+}
+void *mystrchr(char *buf,char ch)
+	{
+		while(*buf)
+		{
+			if(*buf==ch)
+			return buf;
+			buf++;
+		}
+		
+	}
+	int main()
+	{
+		char buf[]="hello world";
+		char ch='l';
+		int *p=mystrchr(buf,ch);
+		printf("%s",p);
+	}
+//赋值运算符 < 逻辑与运算符 < 关系运算符 < 算术运算符
+
+]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

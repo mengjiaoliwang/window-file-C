@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>#4</Title>
+			<Shortcut>#4</Shortcut>
+			<Description>c语言main函数</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>expression</ID>
+					<ToolTip>要计算的表达式</ToolTip>
+					<Default>true</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="cpp"><![CDATA[
+//1、	冒泡排序：
+//(1)数组：
+int bublle(int arr[];int count)
+{
+		for(int i=0;i<count-1;i++)
+		{
+			for(int j=0;j<count-i-1;j++)	
+			{
+				if (arr[j]>arr[j+1])
+				{
+int temp=arr[j];
+				arr[j]=arr[j+1];
+				arr[j+1]=temp;
+}
+}	
+}
+}
+（2）指针
+int bublle(int *p;int len)
+{
+		for(int i=0;i<len-1;i++)
+		{
+			for(int j=0;j<len-i-1;j++)	
+			{
+				(1)if (*(p+j)>*(p+j+1))
+				{
+int temp=*(p+j);
+				*(p+j)= *(p+j+1);
+				*(p+j+1)=temp;	
+}
+
+				(2) if (p[j]>p[j+1])
+				{
+int temp=p[j+1];
+				p[j]= p[j+1];
+				p[j+1]=temp;
+				}
+}
+}	
+}
+}
+
+注意：
+（1）	int arr[]={4，7，8，1，3，9，5，10，2，6};（有count=10个数）
+int *p=arr;
+arr[i]=p[i]=*(p+i)
+=*p++(会改变p的地址)；
+
+
+
+
+]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

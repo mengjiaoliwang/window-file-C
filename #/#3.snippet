@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>#3</Title>
+			<Shortcut>#3</Shortcut>
+			<Description>c语言main函数</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>expression</ID>
+					<ToolTip>要计算的表达式</ToolTip>
+					<Default>true</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="cpp"><![CDATA[
+int chengjipaixu(int **p,int len)
+{
+	for (int i = 0; i < len-1; i++)
+	{
+		for (int j = 0; j < len-1-i; j++)
+		{
+			int sum1 = p[j][0] + p[j][1] + p[j][2];
+			int sum2 = p[j+1][0] + p[j+1][1] + p[j+1][2];
+			if (sum1>sum2)
+			{
+				int *temp = p[j];
+				p[j] = p[j + 1];
+				p[j + 1] = temp;
+			}
+
+		}
+	}
+	
+}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

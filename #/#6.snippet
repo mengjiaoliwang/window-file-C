@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>#6</Title>
+			<Shortcut>#6</Shortcut>
+			<Description>c语言main函数</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>expression</ID>
+					<ToolTip>要计算的表达式</ToolTip>
+					<Default>true</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="cpp"><![CDATA[
+5、指针和函数
+
+（1）
+Void bubble(int *arr,int len )
+{
+	Printf(“形参中的大小：%d\n”,arr);//输出4；传递地址；不知其大小
+}
+Int main()
+{
+	Int arr[]={3,6,9,10,2,8,4,1,7,5};
+	Printf(“实参中的大小为：%d\n”，arr);//输出40；
+	Bubble(arr,10);
+}
+
+（2）********指针冒泡排序：
+见1(2);
+
+（3）指针作为函数参数特性：
+#include<time.h>
+Void random(int *arr,int len)//输入特性
+{
+	srand((unsigned int)time NULL);
+	for(int i=0;i<10;i++)
+{
+	arr[i]=rand()%100+1;//产生1到100之间的数；
+}
+}
+Void print(int *arr,int len)//输出特性
+{
+for(int i=0;i<10;i++)
+{
+	Printf（”%d ”,arr[i]）;
+}
+}
+
+void bublle(int *p;int len)//重复
+{
+		for(int i=0;i<len-1;i++)
+		{
+			for(int j=0;j<len-i-1;j++)	
+			{
+				(1)if (*(p+j)>*(p+j+1))
+				{
+int temp=*(p+j);
+				*(p+j)= *(p+j+1);
+				*(p+j+1)=temp;	
+}
+
+				(2) if (p[j]>p[j+1])
+				{
+int temp=p[j+1];
+				p[j]= p[j+1];
+				p[j+1]=temp;
+				}
+}
+}
+}
+
+Int main()
+{
+	Int arr[10];
+	Random(arr,10);
+	Print(arr,10);
+	Bublle(arr,10);
+	Print(arr,10);
+
+
+}
+
+
+（4）字符串追加：strcat(dest,src);
+
+Void mystrcat(char *dest,char *src)//输入特性
+{
+	If(!dest||!src)
+		Return ;因为前为void,所以return NULL与return相同；
+	（1）While(*dest++);//让地址到arr2的‘\0’的地方；
+	dest--;
+
+	（2）while(*dest)dest++;
+
+
+While(*dest++=*src++;)
+	
+}
+
+
+Int main()
+{
+	Char arr1[]=”hello”;
+	Char arr2[100]=”world”;
+	Mystrcat(arr2,arr1);
+	Printf(“%s\n”,arr2);
+}
+
+（5）字符串比较：
+int mystrcmp(char *dest,char *src)
+{
+	If(!dest||！src)
+	return -2;
+	while(*dest==*src)
+	{
+		If(*dest==’\0’)
+		{
+			return 0;
+}
+else
+{
+			dest++ ;
+			src++;
+		}
+		return *dest>*src?1:-1; 
+}
+
+Int main()
+{
+	char arr1[]=”hello”;
+	char arr2[]=”helle”;
+	
+(1)	int val=strcmp(arr1,arr2);//相同时返回0；第一个大时，返回1；
+printf(“%d\n”,val); 
+		
+		（2）
+int val= mystrcmp(arr1,arr2);//相同时返回0；第一个大时，返回1；
+printf(“%d\n”,val); 
+}
+
+
+(6)指针作为函数的返回值：
+	Char *fun(char *buf)
+	{
+		gets(buf);//从键盘上输入字符串；
+		return buf;
+}
+	Int main()
+{
+	Char buf[100];
+	
+(1)Int *p=fun(buf);
+	Printf(“%s\n”,p);	
+	
+	(2)printf(“%s\n”,fun(buf));
+
+}
+
+注意：******
+Int *fun2()
+{
+	Int a=10;
+	Return &a;
+}
+Int main()
+{
+	Int *p=fun2();
+	Printf(“%d\n”,*p);
+	//当函数调用完成以后，a开辟的空间就会释放掉，*p会成为野指针；
+}
+
+（7）字符指针
+Char buf[]=”hello world”;//在栈区，其值可以修改；
+Char *buf=”hello world”;//是正确的；但其值不能改变；在字符串常量区；
+
+（8）字符指针作为函数参数和返回值
+
+	******1、hello  llo
+		 2、hellf   llo
+		 3、helllo  llo
+		 4、hell    llo
+	Char *mystrstr(const char *dest,const char *src)
+	{
+(1)	int i=0;
+while(dest[i]!=’\0’)
+{
+		int j=0;
+		while(dest[i+j]==src[j]&&src[j]!=’\0’)
+		{
+			//i++;
+			j++;
+}
+if(src[j]==’\0’)
+{
+	//return &dest[i-j];
+return &dest[i];
+
+}
+//i=i-j;
+i++;
+}
+
+
+(2)	int i=0;
+while(*(dest+i)!=’\0’)
+{
+		int j=0;
+		while(*(dest+i+j)==*(src+j)&&*(src+j)!=’\0’)
+		{
+			//i++;
+			j++;
+}
+if(*(src+j)==’\0’)
+{
+	//return &dest[i-j];
+return dest+i;
+
+}
+//i=i-j;
+i++;
+}
+
+
+
+(3)
+while(*dest)
+{
+		Int i=0;
+		while(*dest==*src&&*src)
+		{
+			dest++;
+			src++;
+			i++;
+}
+if(*src==’\0’)
+{
+	//return &dest[i-j];
+return dest-i;
+
+}
+dest-=i;
+src-=i;
+dest++;
+}
+
+		
+
+Return NULL;
+}
+
+int main()
+{
+	Printf(“%s\n”,mystrstr(“hello”,”llo”));
+	
+}
+（8）字符串数组排序：
+(1)void sort(char *buf[5],int len)
+
+
+(2)void sort(char **buf,int len)
+{
+	for(int i=0;i<len-1;i++)
+	{
+		for(int j=0;j<len-1-i;j++)
+		{
+			if(buf[j][0]>buf[j+1][0])
+			{
+				char *arr=buf[j];
+				buf[j]=buf[j+1];
+				buf[j+1]=arr;
+}
+}
+}
+}
+int main()
+{
+char *buf[5]={“hello”,”world”,”nichousha”,”dabaobei”,”guawazi”};
+//buf[i][0];
+//*buf[i];
+//*(*(buf+i))
+sort(buf,5);
+for(int i=0;i<5;i++)
+{
+	printf(“%s\n”,buf[i]);
+}
+}
+
+（9）字符串截取：
+int main(int argc,char *argv[])
+{
+	char buf[1024]=”gcc –o ”;
+	char temp[1024];
+	?????strcpy(temp,argv[1]);
+	char *p=strtok(temp,”.”);
+	strcat(buf,p);
+	strcat(buf,” ”);
+	strcat(buf,argv[1]);
+}
+
+(10)字符串逆置：
+void nizhichuan(char *buf)
+{
+	int len=strlen(buf)-1;
+	char *start=buf;
+	char *end=buf+len;
+	while(start<end)
+	{
+		char temp=*start;
+		*start=*end;
+		*end=temp;
+		start++;
+		end--;
+}
+
+}
+
+
+int main()
+{
+	char buf[]=”hello”;
+	nizhichuan(buf);
+	printf(“%s\n”,buf);
+
+}
+
+(11)字符串去空格：
+char *removespace(char *buf)
+{
+	char *auf =buf;
+	char *end=buf+[strlen(buf)-1];
+	char *start=buf;
+while(end>=start)
+{
+	if(*end==’ ’)
+	{
+		end--;
+}
+else
+{
+	end++;
+	break;
+}
+
+}
+*end=’\0’;
+while(start <end)
+{
+	if(*start==’ ’)
+	{
+		start ++;
+}
+else
+{
+	return start;
+}
+}
+	int j = 0;
+	for (int i = 0; i < strlen(buf); i++)
+	{
+		if (auf[i]!= ' ')
+		{
+			buf[j] =auf[i];
+			j++;
+		}
+		
+	}
+	buf[j] = '\0';
+return buf;
+
+}
+int main()
+{
+	char buf[]=”   hello   ”;
+	char *p= removespace(buf)
+
+	printf(“%s\n”,p);
+//中间有空格，
+}
+
+
+
+
+
+]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

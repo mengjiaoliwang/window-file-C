@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>#5</Title>
+			<Shortcut>#5</Shortcut>
+			<Description>c语言main函数</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>expression</ID>
+					<ToolTip>要计算的表达式</ToolTip>
+					<Default>true</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="cpp"><![CDATA[
+
+///2、	指针实现strcpy:
+(1)、
+char *mystrcpy(char *buf,char *arr)
+{		
+		if(!buf||!arr)//地址为空；
+			return NULL;
+		int i=0;
+		char *temp=buf;
+		
+(1)while(*temp++=*arr++)
+(2)err;
+while(!foef(arr))
+		{
+			temp[i]=arr[i];
+			i++;
+}
+(3)while(*arr!=’\0’)
+{
+	*temp=*arr;
+	temp++;
+	arr++;
+}
+*temp=’\0’;
+		
+
+return buf;
+}
+
+Int main()
+{
+		char arr[]=”hello word”;
+		char buf[1024]=’ ’;//buf里有值，并不为空；
+		
+(1)mystrcpy(buf,arr);
+		printf(“%s”,buf);
+		（2）char *p=mystrcpy(buf,arr);
+		printf(“%s”,p);
+}
+注意：feof()用于判断文件是否到结尾。
+	(2)第三种方法一定要记得给*temp最后一位加‘\0’;
+
+
+*****3、指针数组：
+指针数组：*p[3];//理解为二维数组；
+指向数组的指针：int arr[]={1,2,3};int *p=arr;
+Int a[]={1,2,3};
+Int b[]={4,5,6};
+Int c[]={7,8,9};
+Int *p={a,b,c};
+（1）*(p[0]+1)=100;
+//等同于a[1]=100;
+（2）p[0][1]=100;
+//等同于a[1]=100;
+（3）*(*（p+1）)=100;//等同于b[0]=100;	
+*(*(p+1)+2)=’Q’;//等同于b[2]=’Q’;
+
+4、多级指针：
+Int a=10;
+Int *p=&a;
+Int **pp=&p;
+//这里**pp=a;
+
+
+
+]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

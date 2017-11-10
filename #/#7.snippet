@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>#7</Title>
+			<Shortcut>#7</Shortcut>
+			<Description>c语言main函数</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>expression</ID>
+					<ToolTip>要计算的表达式</ToolTip>
+					<Default>true</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="cpp"><![CDATA[
+3、	文件：
+（1）	打开文件：
+FILE *fp=fopen(“  ”,” ”);//第一个是路径，第二个是写？读？使用/斜杠
+if(fp==NULL)
+{
+	return -1;
+}
+fclose(fp);
+（2）读文件：
+char ch=fgetc（fp）;//读取一个字符；
+char ch1=’a’;
+//fp++;//err;光标会自动往下
+ch=fgetc（fp）;//读取第二个字符
+(3)	文件结尾：
+EOF返回值为-1；
+一般：while(（ch=fgetc(fp)）==EOF)
+!feof(fp);
+(4)	存文件：
+fputc(ch1,fp);
+		（5）行读写
+		fgets(arr,stdin);//字符串
+		fputs(arr,len,stdout);
+		fputs(buf,fp);//成功为0；//\0之前的写到文件中；
+		fgets(buf,10,fp);//有效字符为9个；读取前一定要重置；memset(buf,0,100)buf[100]
+		（6）四则运算
+			enum opt
+{
+	add,sub,mlt,dive
+};
+int main()
+{
+	char buf[100];
+	srand((unsigned int)time NULL);
+	FILE*fp = fopen("D:/c++/四则运算.txt", "w");
+	FILE*fp1 = fopen("D:/c++/四则运算.txt", "r");
+	FILE*fp2= fopen("D:/c++/四则运算1.txt", "w");
+
+	if (!fp||!fp1)
+		return -1;
+	for (int i = 0; i < 10;i++)
+	{
+		int a = rand() % 100 + 1;
+		int b = rand() % 100 + 1;
+		char c = rand() % 3 + 1;
+		int d;
+		switch (c)
+		{
+		case add:c = '+'; d = a + b; break;
+		case sub:c = '-';  d = a - b; break;
+		case mlt:c = '*'; d = a *b;  break;
+		case dive:c = '/'; d = a / b;  break;
+		}
+		printf("%d%c%d=%d\n", a, c, b, d);
+		memset(buf, 0, 100);
+		sprintf(buf,"%d%c%d=\n",a,c,b);
+		fputs(buf, fp);
+		
+	}
+	fclose(fp);
+	while (!feof(fp1))
+	//for (int i = 0; i < 10; i++)
+	{
+		memset(buf, 0, 100);
+		fgets(buf,100,fp1);
+		int a, b,d;
+		char c;
+		sscanf(buf, "%d%c%d=\n", &a, &c, &b);
+		switch (c)
+		{
+		case '+': d = a + b; break;
+		case '-': d = a - b; break;
+		case '*': d = a *b;  break;
+		case '/': d = a / b;  break;
+		}
+		memset(buf, 0, 100);
+		sprintf(buf, "%d%c%d=%d\n", a, c, b, d);
+		//printf("%s", buf);
+		fputs(buf, fp2);
+	}
+
+	
+	fclose(fp1);
+	fclose(fp2);
+
+	return EXIT_SUCCESS;
+}
+(7)fprintf(fp,”%s%d”,“hello“，123);
+Fscanf(fp,”%[^0-9]%d”,buf,&a);
+Printf(“%s”,buf);
+(8) int main0801()
+{
+	srand((unsigned int)time(NULL));
+
+	FILE * fp = fopen("D:/大文件数据.txt", "w");
+	if (!fp)
+		return -1;
+	for (int i = 0; i < 1000; i++)
+	{
+		fprintf(fp, "%d\n", rand() % 256 + 1);
+	}
+
+	fclose(fp);
+
+	return EXIT_SUCCESS;
+}
+
+
+
+
+void BubbleSort(int * src, int len)
+{
+	for (int i = 0; i < len - 1; i++)
+	{
+		for (int j = 0; j < len - 1 - i; j++)
+		{
+			if (src[j] > src[j + 1])
+			{
+				int temp = src[j];
+				src[j] = src[j + 1];
+				src[j + 1] = temp;
+			}
+		}
+	}
+}
+
+int main08(void)
+{
+	//打开文件
+	FILE * fp = fopen("D:/大文件数据.txt", "r");
+	FILE * fp1 = fopen("D:/大文件数据排序.txt", "w");
+	if (!fp || !fp1)
+		return -1;
+	//开辟堆空间
+	int * arr = (int *)malloc(sizeof(int) * 1000);
+	//读数据
+	for (int i = 0; i < 1000; i++)
+	{
+		fscanf(fp, "%d\n", &arr[i]);
+	}
+
+	//排序
+	BubbleSort(arr, 1000);
+
+	for (int i = 0; i < 1000; i++)
+	{
+		fprintf(fp1, "%d\n", arr[i]);
+	}
+
+
+	free(arr);
+	arr = NULL;
+	fclose(fp);
+	fp = NULL;
+	fclose(fp1);
+	fp1 = NULL;
+	return 0;
+
+(9) int main09()
+{
+	FILE * fp = fopen("D:/大文件数据.txt", "r");
+	FILE * fp1 = fopen("D:/大文件数据排序1.txt", "w");
+	if (!fp || !fp1)
+		return -1;
+
+	int *arr = (int *)malloc(sizeof(int) * 1000);
+
+	for (int i = 0; i < 1000; i++)
+	{
+		fscanf(fp, "%d\n", &arr[i]);
+	}
+
+	int arr1[256] = { 0 };
+	for (int i = 0; i < 1000; i++)
+	{
+		arr1[arr[i] - 1]++;
+	}
+
+	//打印数据
+	for (int i = 0; i < 256; i++)
+	{
+		//printf("%d\n", arr1[i]);
+		for (int j = 0; j < arr1[i]; j++)
+		{
+			//printf("%d\n", i + 1);
+			fprintf(fp1, "%d\n", i+1);
+		}
+	}
+
+	free(arr);
+	fclose(fp);
+	fclose(fp1);
+
+	return EXIT_SUCCESS;
+}
+
+
+]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
